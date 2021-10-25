@@ -22,3 +22,6 @@ def api_get_pizzas(request):
     pizzas = Pizza.objects.all().order_by('prix')
     json = serializers.serialize('json', pizzas)
     return HttpResponse(json)
+
+# def api_get_one_pizza(request):
+#     pizza = Pizza.objects.get()
