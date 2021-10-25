@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Mama - Menu</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'menu/style.css' %}">
+</head>
+<body>
+    <div id="main">
+        <div>
+            <a href="{% url 'main:index' %}"><img id="small_logo" src="{% static 'menu/images/small_logo.png' %}" alt="small_logo"></a>
+        </div>
+        <div class="menu_title">
+            <h1>Les pizzas</h1>
+        </div>
+
+        <div class="menu_list">
+            {% for pizza in pizzas %}
+                <div class="menu_list_item">
+                    <span class="menu_list_title">
+                        {{pizza.nom}}
+                    </span>
+                    <span class="menu_list_price">
+                        {{pizza.prix | floatformat:2}}€
+                    </span>
+                    <span class="menu_list_ingredients">
+                        {{pizza.ingredients}}
+                    </span>
+                    {% if pizza.vegetarienne %}
+                        <span class="menu_list_badge">VÉGÉTARIENNE</span>
+                    {% endif %}
+                </div> 
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
